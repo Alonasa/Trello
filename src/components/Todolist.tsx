@@ -13,6 +13,10 @@ export type taskType = {
 }
 
 export const Todolist = (props: todolistType) => {
+  const taskRemover = (id: string) => {
+	props.removeTask(id)
+  }
+  
   return (
 	<div>
 	  <h3>{props.title}</h3>
@@ -25,7 +29,7 @@ export const Todolist = (props: todolistType) => {
 		  task =>
 			<li id={task.id}><input type="checkbox" checked={task.isDone}/>
 			  <span>{task.title}</span>
-			  <button onClick={(e)=>props.removeTask(task.id)}>x</button>
+			  <button onClick={(e)=>taskRemover(task.id)}>x</button>
 			</li>
 		)}
 	  </ul>
