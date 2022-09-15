@@ -22,7 +22,10 @@ export const Todolist = (props: todolistType) => {
 	  <ul>
 		{props.tasks.map(
 		  task =>
-			<li><input type="checkbox" checked={task.isDone}/> <span>{task.title}</span></li>
+			<li><input type="checkbox" checked={task.isDone}/>
+			  <span>{task.title}</span>
+			  <button>x</button>
+			</li>
 		)}
 	  </ul>
 	  <div>
