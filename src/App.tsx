@@ -9,11 +9,11 @@ function App() {
 	{id: '2', title: 'React', isDone: false}
   ])
   
-  let [filter, setFilter] = useState('All')
+  let [filter, setFilter] = useState<tasksStatusType>('All')
   
   
   const removeTask = (id: string) => {
-	const newTasks = tasks.filter((t: any) => t.id !== id)
+	const newTasks = tasks.filter((t) => t.id !== id)
 	setTasks([...newTasks])
   }
   
