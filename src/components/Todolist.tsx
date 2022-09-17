@@ -5,6 +5,7 @@ type todolistType = {
   tasks: Array<taskType>
   removeTask: (id: string) => void
   filterTasks: (status: tasksStatusType) => void
+  addTask: (value: string) => void
 }
 
 export type taskType = {
@@ -21,23 +22,29 @@ export const Todolist = (props: todolistType) => {
   }
   
   const tasksFiltrator = (status: tasksStatusType) => {
-    return props.filterTasks(status)
+	return props.filterTasks(status)
   }
   
+  const getFieldValue = (value: string) => {
+	console.log(`we received ${value}`)
+  }
+  
+  const addTasksHandler = (value: string) => {
+  }
   
   return (
 	<div>
 	  <h3>{props.title}</h3>
 	  <div>
-		<input/>
-		<button>+</button>
+		<input onChange={(e) => getFieldValue(e.currentTarget.value)}/>
+		<button onClick={()=>addTasksHandler}>+</button>
 	  </div>
 	  <ul>
 		{props.tasks.map(
 		  task =>
 			<li id={task.id}><input type="checkbox" checked={task.isDone}/>
 			  <span>{task.title}</span>
-			  <button onClick={(e)=>taskRemover(task.id)}>x</button>
+			  <button onClick={(e) => taskRemover(task.id)}>x</button>
 			</li>
 		)}
 	  </ul>
