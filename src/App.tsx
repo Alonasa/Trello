@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import './App.css';
 import {tasksStatusType, taskType, Todolist} from './components/Todolist';
+import {v1} from 'uuid';
 
 function App() {
   let [tasks, setTasks] = useState<Array<taskType>>([
-	{id: '0', title: 'HTML&CSS', isDone: true},
-	{id: '1', title: 'JS', isDone: true},
-	{id: '2', title: 'React', isDone: false}
+	{id: v1(), title: 'HTML&CSS', isDone: true},
+	{id: v1(), title: 'JS', isDone: true},
+	{id: v1(), title: 'React', isDone: false}
   ])
   
   let [filter, setFilter] = useState<tasksStatusType>('All')
@@ -19,10 +20,10 @@ function App() {
   
   let filteredTasks = tasks;
   if (filter === 'Completed') {
-	filteredTasks = tasks.filter(t => t.isDone === true)
+	filteredTasks = tasks.filter(t => t.isDone)
   }
   if (filter === 'Active') {
-	filteredTasks = tasks.filter(t => t.isDone !== true)
+	filteredTasks = tasks.filter(t => !t.isDone)
   }
   
   const tasksFiltrator = (status: tasksStatusType) => {
