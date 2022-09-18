@@ -25,7 +25,7 @@ export const Todolist = (props: todolistType) => {
 	return props.filterTasks(status)
   }
   
-  let [title,setTitle] = useState('');
+  let [title, setTitle] = useState('');
   
   const getFieldValue = (value: string) => {
 	setTitle(value)
@@ -36,17 +36,25 @@ export const Todolist = (props: todolistType) => {
 	setTitle('')
   }
   
+  const onKeyPressHandler = (key: string) => {
+	if (key === 'Enter') {
+	  addTaskHandler()
+	}
+  }
+  
   return (
 	<div>
 	  <h3>{props.title}</h3>
 	  <div>
-		<input value={title} onChange={(e) => getFieldValue(e.currentTarget.value)}/>
+		<input value={title}
+			   onChange={(e) => getFieldValue(e.currentTarget.value)}
+			   onKeyPress={(e) => onKeyPressHandler(e.key)}/>
 		<button onClick={addTaskHandler}>+</button>
 	  </div>
 	  <ul>
 		{props.tasks.map(
 		  task =>
-			<li id={task.id}><input type="checkbox" checked={task.isDone}/>
+			<li key={task.id}><input type="checkbox" checked={task.isDone}/>
 			  <span>{task.title}</span>
 			  <button onClick={(e) => taskRemover(task.id)}>x</button>
 			</li>
