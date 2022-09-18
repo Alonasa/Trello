@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 type todolistType = {
   title: string
@@ -25,21 +25,22 @@ export const Todolist = (props: todolistType) => {
 	return props.filterTasks(status)
   }
   
-  let message = '';
+  let [title,setTitle] = useState('');
   
   const getFieldValue = (value: string) => {
-	return message = value
+	setTitle(value)
   }
   
   const addTaskHandler = () => {
-	props.addTask(message)
+	props.addTask(title)
+	setTitle('')
   }
   
   return (
 	<div>
 	  <h3>{props.title}</h3>
 	  <div>
-		<input onChange={(e) => getFieldValue(e.currentTarget.value)}/>
+		<input value={title} onChange={(e) => getFieldValue(e.currentTarget.value)}/>
 		<button onClick={addTaskHandler}>+</button>
 	  </div>
 	  <ul>
