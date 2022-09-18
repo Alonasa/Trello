@@ -31,12 +31,16 @@ export const Todolist = (props: todolistType) => {
 	return message = value
   }
   
+  const addTaskHandler = () => {
+	props.addTask(message)
+  }
+  
   return (
 	<div>
 	  <h3>{props.title}</h3>
 	  <div>
 		<input onChange={(e) => getFieldValue(e.currentTarget.value)}/>
-		<button onClick={()=>props.addTask(message)}>+</button>
+		<button onClick={addTaskHandler}>+</button>
 	  </div>
 	  <ul>
 		{props.tasks.map(

@@ -31,8 +31,10 @@ function App() {
   }
   
   const addNewTask = (value: string) => {
-	const newTask = {id: v1(), title: value, isDone: false}
-	setTasks([...tasks,newTask])
+	if (value) {
+	  const newTask = {id: v1(), title: value.trim(), isDone: false}
+	  setTasks([...tasks, newTask])
+	}
   }
   
   return (
