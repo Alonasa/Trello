@@ -18,10 +18,6 @@ export type tasksStatusType = 'All' | 'Active' | 'Completed'
 
 export const Todolist = (props: todolistType) => {
   
-  const taskRemover = (id: string) => {
-	props.removeTask(id)
-  }
-  
   const tasksFiltrator = (status: tasksStatusType) => {
 	return props.filterTasks(status)
   }
@@ -54,12 +50,15 @@ export const Todolist = (props: todolistType) => {
 	  </div>
 	  <ul>
 		{props.tasks.map(
-		  task =>
-			<li key={task.id}><input type="checkbox" checked={task.isDone}/>
+		  task => {
+			const taskRemover = () => {
+			  props.removeTask(task.id)
+			}
+			return (<li key={task.id}><input type="checkbox" checked={task.isDone}/>
 			  <span>{task.title}</span>
-			  <button onClick={(e) => taskRemover(task.id)}>x</button>
-			</li>
-		)}
+			  <button onClick={taskRemover}>x</button>
+			</li>)
+		  })}
 	  </ul>
 	  <div>
 		<button onClick={()=>tasksFiltrator('All')}>All</button>
