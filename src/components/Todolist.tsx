@@ -25,11 +25,10 @@ export const Todolist = (props: todolistType) => {
 	return props.filterTasks(status)
   }
   
-  const getFieldValue = (value: string) => {
-	console.log(`we received ${value}`)
-  }
+  let message = '';
   
-  const addTasksHandler = (value: string) => {
+  const getFieldValue = (value: string) => {
+	return message = value
   }
   
   return (
@@ -37,7 +36,7 @@ export const Todolist = (props: todolistType) => {
 	  <h3>{props.title}</h3>
 	  <div>
 		<input onChange={(e) => getFieldValue(e.currentTarget.value)}/>
-		<button onClick={()=>addTasksHandler}>+</button>
+		<button onClick={()=>props.addTask(message)}>+</button>
 	  </div>
 	  <ul>
 		{props.tasks.map(
