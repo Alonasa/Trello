@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 
 type todolistType = {
   title: string
@@ -17,6 +17,7 @@ export type taskType = {
 export type tasksStatusType = 'All' | 'Active' | 'Completed'
 
 export const Todolist = (props: todolistType) => {
+  
   const taskRemover = (id: string) => {
 	props.removeTask(id)
   }
@@ -27,8 +28,8 @@ export const Todolist = (props: todolistType) => {
   
   let [title, setTitle] = useState('');
   
-  const getFieldValue = (value: string) => {
-	setTitle(value)
+  const getFieldValue = (e: ChangeEvent<HTMLInputElement>) => {
+	setTitle(e.currentTarget.value)
   }
   
   const addTaskHandler = () => {
@@ -36,8 +37,8 @@ export const Todolist = (props: todolistType) => {
 	setTitle('')
   }
   
-  const onKeyPressHandler = (key: string) => {
-	if (key === 'Enter') {
+  const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+	if (e.key === 'Enter') {
 	  addTaskHandler()
 	}
   }
@@ -47,8 +48,8 @@ export const Todolist = (props: todolistType) => {
 	  <h3>{props.title}</h3>
 	  <div>
 		<input value={title}
-			   onChange={(e) => getFieldValue(e.currentTarget.value)}
-			   onKeyPress={(e) => onKeyPressHandler(e.key)}/>
+			   onChange={getFieldValue}
+			   onKeyPress={onKeyPressHandler}/>
 		<button onClick={addTaskHandler}>+</button>
 	  </div>
 	  <ul>
