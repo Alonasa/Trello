@@ -48,7 +48,7 @@ function App() {
 	<div className="App">
 	  <Todolist title={'What to learn'} tasks={filteredTasks}
 				removeTask={removeTask} filterTasks={tasksFiltrator}
-				addTask={addNewTask} changeTaskStatus={changeTaskStatus}
+				addTask={addNewTask} changeTaskStatus={changeTaskStatus} filter={filter}
 				/>
 	</div>
   );

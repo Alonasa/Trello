@@ -15,3 +15,13 @@
   color: rebeccapurple;
   font-weight: bold;
 }
+
+.filter {
+  padding: 5px 15px;
+}
+
+.active-filter {
+  padding: 5px 15px;
+  background-color: rebeccapurple;
+  color: antiquewhite;
+}
