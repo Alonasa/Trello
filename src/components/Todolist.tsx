@@ -47,6 +47,10 @@ export const Todolist = (props: todolistType) => {
 	}
   }
   
+  const filterStyleHandler = (filter: string) => {
+	return props.filter === filter ? 'active-filter' : 'filter'
+  }
+  
   return (
 	<div>
 	  <h3>{props.title}</h3>
@@ -77,9 +81,9 @@ export const Todolist = (props: todolistType) => {
 		  })}
 	  </ul>
 	  <div>
-		<button className={props.filter === 'All' ? 'active-filter' : 'filter'} onClick={() => tasksFiltrator('All')}>All</button>
-		<button className={props.filter === 'Active' ? 'active-filter' : 'filter'} onClick={() => tasksFiltrator('Active')}>Active</button>
-		<button className={props.filter === 'Completed' ? 'active-filter' : 'filter'} onClick={() => tasksFiltrator('Completed')}>Completed</button>
+		<button className={filterStyleHandler('All')} onClick={() => tasksFiltrator('All')}>All</button>
+		<button className={filterStyleHandler('Active')} onClick={() => tasksFiltrator('Active')}>Active</button>
+		<button className={filterStyleHandler('Completed')} onClick={() => tasksFiltrator('Completed')}>Completed</button>
 	  </div>
 	</div>
   )
