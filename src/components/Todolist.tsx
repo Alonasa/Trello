@@ -7,6 +7,7 @@ type todolistType = {
   filterTasks: (status: tasksStatusType) => void
   addTask: (value: string) => void
   changeTaskStatus: (id: string, isDone: boolean) => void
+  error: string | null
 }
 
 export type taskType = {
@@ -46,8 +47,11 @@ export const Todolist = (props: todolistType) => {
 	  <div>
 		<input value={title}
 			   onChange={getFieldValue}
-			   onKeyPress={onKeyPressHandler}/>
+			   onKeyPress={onKeyPressHandler}
+			   className={props.error ? 'error' : ''}
+		/>
 		<button onClick={addTaskHandler}>+</button>
+		{props.error && <div className={'error-message'}>{props.error}</div>}
 	  </div>
 	  <ul>
 		{props.tasks.map(
