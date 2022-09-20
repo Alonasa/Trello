@@ -11,7 +11,6 @@ function App() {
   ])
   
   let [filter, setFilter] = useState<tasksStatusType>('All')
-  let [error, setError] = useState<string | null>(null)
   
   const removeTask = (id: string) => {
 	const newTasks = tasks.filter((t) => t.id !== id)
@@ -32,11 +31,8 @@ function App() {
   
   const addNewTask = (value: string) => {
 	if (value) {
-	  setError(null);
 	  const newTask = {id: v1(), title: value.trim(), isDone: false};
 	  setTasks([...tasks, newTask]);
-	} else {
-	  setError(`You can't send an empty task`)
 	}
   }
   
@@ -53,7 +49,7 @@ function App() {
 	  <Todolist title={'What to learn'} tasks={filteredTasks}
 				removeTask={removeTask} filterTasks={tasksFiltrator}
 				addTask={addNewTask} changeTaskStatus={changeTaskStatus}
-				error={error}/>
+				/>
 	</div>
   );
 }

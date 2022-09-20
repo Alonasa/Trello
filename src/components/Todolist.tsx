@@ -7,7 +7,6 @@ type todolistType = {
   filterTasks: (status: tasksStatusType) => void
   addTask: (value: string) => void
   changeTaskStatus: (id: string, isDone: boolean) => void
-  error: string | null
 }
 
 export type taskType = {
@@ -25,14 +24,20 @@ export const Todolist = (props: todolistType) => {
   }
   
   let [title, setTitle] = useState('');
+  let [error, setError] = useState<string | null>(null)
   
   const getFieldValue = (e: ChangeEvent<HTMLInputElement>) => {
 	setTitle(e.currentTarget.value)
+	setError(null)
   }
   
   const addTaskHandler = () => {
-	props.addTask(title)
-	setTitle('')
+	if (title) {
+	  props.addTask(title)
+	  setTitle('')
+	} else {
+	  setError(`You can't send an empty task`)
+	}
   }
   
   const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -48,10 +53,10 @@ export const Todolist = (props: todolistType) => {
 		<input value={title}
 			   onChange={getFieldValue}
 			   onKeyPress={onKeyPressHandler}
-			   className={props.error ? 'error' : ''}
+			   className={error ? 'error' : ''}
 		/>
 		<button onClick={addTaskHandler}>+</button>
-		{props.error && <div className={'error-message'}>{props.error}</div>}
+		{error && <div className={'error-message'}>{error}</div>}
 	  </div>
 	  <ul>
 		{props.tasks.map(
