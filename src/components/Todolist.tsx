@@ -5,7 +5,7 @@ type TodolistType = {
   title: string
   tasks: Array<TaskType>
   removeTask: (id: string) => void
-  filterTasks: (status: TasksStatusType) => void
+  filterTasks: (status: TasksStatusType, todolistId: string) => void
   addTask: (value: string) => void
   changeTaskStatus: (id: string, isDone: boolean) => void
   filter: TasksStatusType
@@ -21,8 +21,8 @@ export type TasksStatusType = 'All' | 'Active' | 'Completed'
 
 export const Todolist = (props: TodolistType) => {
   
-  const tasksFiltrator = (status: TasksStatusType) => {
-	return props.filterTasks(status)
+  const tasksFiltrator = (status: TasksStatusType, todolistId: string) => {
+	return props.filterTasks(status, todolistId)
   }
   
   let [title, setTitle] = useState('');
@@ -82,9 +82,9 @@ export const Todolist = (props: TodolistType) => {
 		  })}
 	  </ul>
 	  <div>
-		<button className={filterStyleHandler('All')} onClick={() => tasksFiltrator('All')}>All</button>
-		<button className={filterStyleHandler('Active')} onClick={() => tasksFiltrator('Active')}>Active</button>
-		<button className={filterStyleHandler('Completed')} onClick={() => tasksFiltrator('Completed')}>Completed</button>
+		<button className={filterStyleHandler('All')} onClick={() => tasksFiltrator('All', props.id)}>All</button>
+		<button className={filterStyleHandler('Active')} onClick={() => tasksFiltrator('Active', props.id)}>Active</button>
+		<button className={filterStyleHandler('Completed')} onClick={() => tasksFiltrator('Completed', props.id)}>Completed</button>
 	  </div>
 	</div>
   )
