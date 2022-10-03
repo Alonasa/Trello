@@ -1,26 +1,26 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 
-type todolistType = {
+type TodolistType = {
   title: string
-  tasks: Array<taskType>
+  tasks: Array<TaskType>
   removeTask: (id: string) => void
-  filterTasks: (status: tasksStatusType) => void
+  filterTasks: (status: TasksStatusType) => void
   addTask: (value: string) => void
   changeTaskStatus: (id: string, isDone: boolean) => void
-  filter: tasksStatusType
+  filter: TasksStatusType
 }
 
-export type taskType = {
+export type TaskType = {
   id: string
   title: string
   isDone: boolean
 }
 
-export type tasksStatusType = 'All' | 'Active' | 'Completed'
+export type TasksStatusType = 'All' | 'Active' | 'Completed'
 
-export const Todolist = (props: todolistType) => {
+export const Todolist = (props: TodolistType) => {
   
-  const tasksFiltrator = (status: tasksStatusType) => {
+  const tasksFiltrator = (status: TasksStatusType) => {
 	return props.filterTasks(status)
   }
   
