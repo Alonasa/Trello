@@ -61,10 +61,22 @@ function App() {
   
   return (
 	<div className="App">
-	  <Todolist title={'What to learn'} tasks={filteredTasks}
-				removeTask={removeTask} filterTasks={tasksFiltrator}
-				addTask={addNewTask} changeTaskStatus={changeTaskStatus} filter={filter}
-				/>
+	  {
+		todolists.map(todolist => {
+		  return <Todolist
+			key = {todolist.id}
+			id={todolist.id}
+			title={todolist.title}
+			tasks={filteredTasks}
+			removeTask={removeTask}
+			filterTasks={tasksFiltrator}
+			addTask={addNewTask}
+			changeTaskStatus={changeTaskStatus}
+			filter={todolist.filter}
+		  />
+		})
+		
+	  }
 	</div>
   );
 }

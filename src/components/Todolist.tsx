@@ -1,6 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 
 type TodolistType = {
+  id: string
   title: string
   tasks: Array<TaskType>
   removeTask: (id: string) => void
