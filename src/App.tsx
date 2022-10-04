@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import './App.css';
 import {
   TasksStatusType,
-  TaskType,
   Todolist,
   TodolistStateType
 } from './components/Todolist';
@@ -38,7 +37,7 @@ function App() {
   })
   
   const removeTask = (id: string, todolistId: string) => {
-	setTasks({...tasks, [todolistId]: tasks[todolistId].filter(t => t.id != id)})
+	setTasks({...tasks, [todolistId]: tasks[todolistId].filter(t => t.id !== id)})
   }
   
   const tasksFiltrator = (status: TasksStatusType, todolistId: string) => {
@@ -61,6 +60,11 @@ function App() {
 	  task.isDone = !isDone
 	}
 	setTasks({...tasks})
+  }
+  
+  const removeTodolist = (id: string) => {
+	setTodolists(todolists.filter(t => t.id !== id))
+	delete tasks[id]
   }
   
   return (
@@ -86,6 +90,7 @@ function App() {
 			addTask={addNewTask}
 			changeTaskStatus={changeTaskStatus}
 			filter={todolist.filter}
+			removeTodolist={removeTodolist}
 		  />
 		})
 		
