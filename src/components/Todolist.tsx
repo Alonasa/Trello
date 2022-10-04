@@ -6,7 +6,7 @@ type TodolistType = {
   tasks: Array<TaskType>
   removeTask: (id: string, todolistId: string) => void
   filterTasks: (status: TasksStatusType, todolistId: string) => void
-  addTask: (value: string) => void
+  addTask: (value: string, todolistId: string) => void
   changeTaskStatus: (id: string, isDone: boolean) => void
   filter: TasksStatusType
 }
@@ -39,7 +39,7 @@ export const Todolist = (props: TodolistType) => {
   
   const addTaskHandler = () => {
 	if (title) {
-	  props.addTask(title)
+	  props.addTask(title, props.id)
 	  setTitle('')
 	} else {
 	  setError(`You can't send an empty task`)

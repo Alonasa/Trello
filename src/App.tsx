@@ -48,10 +48,10 @@ function App() {
 	} : t))
   }
   
-  const addNewTask = (value: string) => {
+  const addNewTask = (value: string, todolistId: string) => {
 	if (value) {
 	  const newTask = {id: v1(), title: value.trim(), isDone: false};
-	 // setTasks([...tasks, newTask]);
+	  setTasks({...tasks, [todolistId]: [newTask, ...tasks[todolistId]]});
 	}
   }
   
