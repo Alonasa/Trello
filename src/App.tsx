@@ -10,19 +10,28 @@ type TodolistsType = {
 }
 
 function App() {
-
+  let todolistID1 = v1();
+  let todolistID2 = v1();
+  
+  
   let [todolists, setTodolists] = useState<Array<TodolistsType>>(
 	[
-	  {id: v1(), title: 'What to learn', filter: 'All'},
-	  {id: v1(), title: 'What to buy', filter: 'All'},
+	  {id: todolistID1, title: 'What to learn', filter: 'All'},
+	  {id: todolistID2, title: 'What to buy', filter: 'All'},
 	]
   )
   
-  let [tasks, setTasks] = useState<Array<TaskType>>([
-	{id: v1(), title: 'HTML&CSS', isDone: true},
-	{id: v1(), title: 'JS', isDone: true},
-	{id: v1(), title: 'React', isDone: false}
-  ])
+  let [tasks, setTasks] = useState({
+	[todolistID1]: [
+	  {id: v1(), title: 'HTML&CSS', isDone: true},
+	  {id: v1(), title: 'JS', isDone: true},
+	  {id: v1(), title: 'React', isDone: false},
+	],
+	[todolistID2]: [
+	  {id: v1(), title: 'Rest API', isDone: true},
+	  {id: v1(), title: 'GraphQL', isDone: true},
+	]
+  })
   
   const removeTask = (id: string) => {
 	const newTasks = tasks.filter((t) => t.id !== id)
@@ -30,7 +39,10 @@ function App() {
   }
   
   const tasksFiltrator = (status: TasksStatusType, todolistId: string) => {
-	setTodolists(todolists.map(t=> t.id === todolistId ? {...t, filter:status} : t))
+	setTodolists(todolists.map(t => t.id === todolistId ? {
+	  ...t,
+	  filter: status
+	} : t))
   }
   
   const addNewTask = (value: string) => {
