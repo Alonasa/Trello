@@ -55,12 +55,12 @@ function App() {
 	}
   }
   
-  const changeTaskStatus = (id: string, isDone: boolean) => {
-	// const task = tasks.find(t => t.id === id);
-	// if (task) {
-	//   task.isDone = !isDone
-	// }
-	// setTasks([...tasks])
+  const changeTaskStatus = (id: string, isDone: boolean, todolistId: string) => {
+	const task = tasks[todolistId].find(t => t.id === id);
+	if (task) {
+	  task.isDone = !isDone
+	}
+	setTasks({...tasks})
   }
   
   return (
