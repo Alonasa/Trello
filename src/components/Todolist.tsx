@@ -4,7 +4,7 @@ type TodolistType = {
   id: string
   title: string
   tasks: Array<TaskType>
-  removeTask: (id: string) => void
+  removeTask: (id: string, todolistId: string) => void
   filterTasks: (status: TasksStatusType, todolistId: string) => void
   addTask: (value: string) => void
   changeTaskStatus: (id: string, isDone: boolean) => void
@@ -15,6 +15,10 @@ export type TaskType = {
   id: string
   title: string
   isDone: boolean
+}
+
+export type TodolistStateType = {
+  [key: string]: Array<TaskType>
 }
 
 export type TasksStatusType = 'All' | 'Active' | 'Completed'
@@ -68,7 +72,7 @@ export const Todolist = (props: TodolistType) => {
 		{props.tasks.map(
 		  task => {
 			const taskRemover = () => {
-			  props.removeTask(task.id)
+			  props.removeTask(task.id, props.id)
 			}
 			const onClickHandler = () => {
 			  props.changeTaskStatus(task.id, task.isDone)

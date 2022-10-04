@@ -1,6 +1,11 @@
 import React, {useState} from 'react';
 import './App.css';
-import {TasksStatusType, TaskType, Todolist} from './components/Todolist';
+import {
+  TasksStatusType,
+  TaskType,
+  Todolist,
+  TodolistStateType
+} from './components/Todolist';
 import {v1} from 'uuid';
 
 type TodolistsType = {
@@ -14,14 +19,13 @@ function App() {
   let todolistID2 = v1();
   
   
-  let [todolists, setTodolists] = useState<Array<TodolistsType>>(
-	[
+  let [todolists, setTodolists] = useState<Array<TodolistsType>>([
 	  {id: todolistID1, title: 'What to learn', filter: 'All'},
 	  {id: todolistID2, title: 'What to buy', filter: 'All'},
 	]
   )
   
-  let [tasks, setTasks] = useState({
+  let [tasks, setTasks] = useState<TodolistStateType>({
 	[todolistID1]: [
 	  {id: v1(), title: 'HTML&CSS', isDone: true},
 	  {id: v1(), title: 'JS', isDone: true},
@@ -33,9 +37,8 @@ function App() {
 	]
   })
   
-  const removeTask = (id: string) => {
-	// const newTasks = tasks.filter((t) => t.id !== id)
-	// setTasks([...newTasks])
+  const removeTask = (id: string, todolistId: string) => {
+	setTasks({...tasks, [todolistId]: tasks[todolistId].filter(t => t.id != id)})
   }
   
   const tasksFiltrator = (status: TasksStatusType, todolistId: string) => {
