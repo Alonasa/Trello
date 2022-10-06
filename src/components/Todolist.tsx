@@ -1,4 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import {UniversalInput} from './UniversalInput';
 
 type TodolistType = {
   id: string
@@ -74,11 +75,7 @@ export const Todolist = (props: TodolistType) => {
 		<button onClick={() => removeTodolist(props.id)}>x</button>
 	  </h3>
 	  <div>
-		<input value={title}
-			   onChange={getFieldValue}
-			   onKeyPress={onKeyPressHandler}
-			   className={error ? 'error' : ''}
-		/>
+		<UniversalInput value={title} onChangeCb={getFieldValue} onKeyPressCb={onKeyPressHandler} className={error ? 'error' : ''}/>
 		<button onClick={addTaskHandler}>+</button>
 		{error && <div className={'error-message'}>{error}</div>}
 	  </div>
