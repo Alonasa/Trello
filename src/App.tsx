@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {
   TasksStatusType,
@@ -6,8 +6,7 @@ import {
   TodolistStateType
 } from './components/Todolist';
 import {v1} from 'uuid';
-import {UniversalInput} from './components/UniversalInput/UniversalInput';
-import {UniversalButton} from './components/UniversalButton/UniversalButton';
+import {AddItemForm} from './components/AddItemForm/AddItemForm';
 
 type TodolistsType = {
   id: string
@@ -75,37 +74,10 @@ function App() {
 	setTasks({...tasks, [newTl.id]:[]})
   }
   
-  const addTodolistHandler = () => {
-	if (tlTitle) {
-	  addTodolist(tlTitle)
-	  setTlTitle('')
-	}
-	else {
-	  setError(`You can't send an empty task`)
-	}
-  }
-  
-  const onTlKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-	if (e.key === 'Enter') {
-	  addTodolistHandler()
-	}
-  }
-  
-  const getTlFieldValue = (e: ChangeEvent<HTMLInputElement>) => {
-	setTlTitle(e.currentTarget.value)
-	setError(null)
-  }
-  
-  const [tlTitle, setTlTitle] = useState('')
-  let [error, setError] = useState<string | null>(null)
-  
   
   return (
 	<div className="App">
-	  <div>
-		<UniversalInput value={tlTitle} onChangeCb={getTlFieldValue} onKeyPressCb={onTlKeyPressHandler} className={'error'}/>
-		<UniversalButton callback={addTodolistHandler}/>
-	  </div>
+	  <AddItemForm addItem={addTodolist}/>
 	  {todolists.map(todolist => {
 		  let filteredTasks = tasks[todolist.id];
 		  
@@ -127,8 +99,6 @@ function App() {
 			changeTaskStatus={changeTaskStatus}
 			filter={todolist.filter}
 			removeTodolist={removeTodolist}
-			addTodolist={addTodolist}
-			error={error}
 		  />
 		})
 		

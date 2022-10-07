@@ -1,6 +1,5 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
-import {UniversalInput} from './UniversalInput/UniversalInput';
-import {UniversalButton} from './UniversalButton/UniversalButton';
+import React from 'react';
+import {AddItemForm} from './AddItemForm/AddItemForm';
 
 type TodolistType = {
   id: string
@@ -12,8 +11,6 @@ type TodolistType = {
   changeTaskStatus: (id: string, isDone: boolean, todolistId: string) => void
   filter: TasksStatusType
   removeTodolist: (id: string) => void
-  addTodolist: (title: string) => void
-  error: string | null
 }
 
 export type TaskType = {
@@ -34,28 +31,6 @@ export const Todolist = (props: TodolistType) => {
 	return props.filterTasks(status, todolistId)
   }
   
-  let [title, setTitle] = useState('');
-  
-  const getFieldValue = (e: ChangeEvent<HTMLInputElement>) => {
-	setTitle(e.currentTarget.value)
-	//setError(null)
-  }
-  
-  const addTaskHandler = () => {
-	if (title) {
-	  props.addTask(title, props.id)
-	  setTitle('')
-	} else {
-	  //setError(`You can't send an empty task`)
-	}
-  }
-  
-  const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-	if (e.key === 'Enter') {
-	  addTaskHandler()
-	}
-  }
-  
   const filterStyleHandler = (filter: string) => {
 	return props.filter === filter ? 'active-filter' : 'filter'
   }
@@ -71,16 +46,16 @@ export const Todolist = (props: TodolistType) => {
 	props.changeTaskStatus(task.id, task.isDone, props.id)
   }
   
+  const addTask = (title: string) => {
+	props.addTask(title, props.id)
+  }
+  
   return (
 	<div>
 	  <h3>{props.title}
 		<button onClick={() => removeTodolist(props.id)}>x</button>
 	  </h3>
-	  <div>
-		<UniversalInput value={title} onChangeCb={getFieldValue} onKeyPressCb={onKeyPressHandler} className={props.error ? 'error' : ''}/>
-		<UniversalButton callback={addTaskHandler}/>
-		{props.error && <div className={'error-message'}>{props.error}</div>}
-	  </div>
+	  <AddItemForm addItem={addTask}/>
 	  <ul>
 		{props.tasks.map(
 		  task => {
