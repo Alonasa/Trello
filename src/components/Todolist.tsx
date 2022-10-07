@@ -12,6 +12,8 @@ type TodolistType = {
   changeTaskStatus: (id: string, isDone: boolean, todolistId: string) => void
   filter: TasksStatusType
   removeTodolist: (id: string) => void
+  addTodolist: (title: string) => void
+  error: string | null
 }
 
 export type TaskType = {
@@ -33,11 +35,10 @@ export const Todolist = (props: TodolistType) => {
   }
   
   let [title, setTitle] = useState('');
-  let [error, setError] = useState<string | null>(null)
   
   const getFieldValue = (e: ChangeEvent<HTMLInputElement>) => {
 	setTitle(e.currentTarget.value)
-	setError(null)
+	//setError(null)
   }
   
   const addTaskHandler = () => {
@@ -45,7 +46,7 @@ export const Todolist = (props: TodolistType) => {
 	  props.addTask(title, props.id)
 	  setTitle('')
 	} else {
-	  setError(`You can't send an empty task`)
+	  //setError(`You can't send an empty task`)
 	}
   }
   
@@ -76,9 +77,9 @@ export const Todolist = (props: TodolistType) => {
 		<button onClick={() => removeTodolist(props.id)}>x</button>
 	  </h3>
 	  <div>
-		<UniversalInput value={title} onChangeCb={getFieldValue} onKeyPressCb={onKeyPressHandler} className={error ? 'error' : ''}/>
+		<UniversalInput value={title} onChangeCb={getFieldValue} onKeyPressCb={onKeyPressHandler} className={props.error ? 'error' : ''}/>
 		<UniversalButton callback={addTaskHandler}/>
-		{error && <div className={'error-message'}>{error}</div>}
+		{props.error && <div className={'error-message'}>{props.error}</div>}
 	  </div>
 	  <ul>
 		{props.tasks.map(

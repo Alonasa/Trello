@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import './App.css';
 import {
   TasksStatusType,
@@ -6,6 +6,8 @@ import {
   TodolistStateType
 } from './components/Todolist';
 import {v1} from 'uuid';
+import {UniversalInput} from './components/UniversalInput/UniversalInput';
+import {UniversalButton} from './components/UniversalButton/UniversalButton';
 
 type TodolistsType = {
   id: string
@@ -20,7 +22,7 @@ function App() {
   
   let [todolists, setTodolists] = useState<Array<TodolistsType>>([
 	  {id: todolistID1, title: 'What to learn', filter: 'All'},
-	  {id: todolistID2, title: 'What to buy', filter: 'All'},
+	  {id: todolistID2, title: 'What to buy', filter: 'All'}
 	]
   )
   
@@ -67,10 +69,44 @@ function App() {
 	delete tasks[id]
   }
   
+  const addTodolist = (title: string) => {
+	const newTl:TodolistsType = {id: v1(), title: title, filter: 'All'}
+  	setTodolists([newTl, ...todolists])
+	setTasks({...tasks, [newTl.id]:[]})
+  }
+  
+  const addTodolistHandler = () => {
+	if (tlTitle) {
+	  addTodolist(tlTitle)
+	  setTlTitle('')
+	}
+	else {
+	  setError(`You can't send an empty task`)
+	}
+  }
+  
+  const onTlKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+	if (e.key === 'Enter') {
+	  addTodolistHandler()
+	}
+  }
+  
+  const getTlFieldValue = (e: ChangeEvent<HTMLInputElement>) => {
+	setTlTitle(e.currentTarget.value)
+	setError(null)
+  }
+  
+  const [tlTitle, setTlTitle] = useState('')
+  let [error, setError] = useState<string | null>(null)
+  
+  
   return (
 	<div className="App">
-	  {
-		todolists.map(todolist => {
+	  <div>
+		<UniversalInput value={tlTitle} onChangeCb={getTlFieldValue} onKeyPressCb={onTlKeyPressHandler} className={'error'}/>
+		<UniversalButton callback={addTodolistHandler}/>
+	  </div>
+	  {todolists.map(todolist => {
 		  let filteredTasks = tasks[todolist.id];
 		  
 		  if (todolist.filter === 'Completed') {
@@ -91,6 +127,8 @@ function App() {
 			changeTaskStatus={changeTaskStatus}
 			filter={todolist.filter}
 			removeTodolist={removeTodolist}
+			addTodolist={addTodolist}
+			error={error}
 		  />
 		})
 		
