@@ -1,5 +1,6 @@
 import React, {ChangeEvent, useState} from 'react';
 import {AddItemForm} from './AddItemForm/AddItemForm';
+import {EditableSpan} from './EditableSpan';
 
 type TodolistType = {
   id: string
@@ -8,6 +9,7 @@ type TodolistType = {
   removeTask: (id: string, todolistId: string) => void
   filterTasks: (status: TasksStatusType, todolistId: string) => void
   addTask: (value: string, todolistId: string) => void
+  editTask: (value: string, tlId: string, taskId: string) => void
   changeTaskStatus: (id: string, isDone: boolean, todolistId: string) => void
   filter: TasksStatusType
   removeTodolist: (id: string) => void
@@ -50,31 +52,6 @@ export const Todolist = (props: TodolistType) => {
 	props.addTask(title, props.id)
   }
   
-  type EditableSpanType = {
-	title: string
-  }
-  
-  const EditableSpan = (props: EditableSpanType) => {
-	const [editMode, setEditMode] = useState(false)
-	const [title, setTitle] =useState(props.title)
-	
-	const editOn = () => {
-	  setEditMode(true)
-	}
-	
-	const editOff = () => {
-	  setEditMode(false)
-	}
-	
-	const cb =(e: ChangeEvent<HTMLInputElement>) => {
-	  setTitle(e.currentTarget.value)
-	}
-	
-	return editMode ? <input value={title} onBlur={editOff} onChange={cb}/> :
-	  <span onDoubleClick={editOn}>{props.title}</span>
-  }
-  
-  
   return (
 	<div>
 	  <h3>{props.title}
@@ -84,11 +61,15 @@ export const Todolist = (props: TodolistType) => {
 	  <ul>
 		{props.tasks.map(
 		  task => {
+			const edTask = (title: string) => {
+			  props.editTask(title, props.id, task.id)
+			}
 			return (
 			  <li key={task.id} className={task.isDone ? 'is-done' : ''}>
 				<input type="checkbox" checked={task.isDone}
 					   onChange={() => onClickHandler(task)}/>
-				<EditableSpan title={task.title}/>
+				<EditableSpan title={task.title}
+							  editTask={edTask}/>
 				<button onClick={() => taskRemover(task)}>x</button>
 			  </li>)
 		  })}
