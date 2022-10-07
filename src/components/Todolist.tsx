@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import {AddItemForm} from './AddItemForm/AddItemForm';
 
 type TodolistType = {
@@ -56,17 +56,23 @@ export const Todolist = (props: TodolistType) => {
   
   const EditableSpan = (props: EditableSpanType) => {
 	const [editMode, setEditMode] = useState(false)
- 
-	const editHandler = () => {
+	const [title, setTitle] =useState(props.title)
+	
+	const editOn = () => {
 	  setEditMode(true)
 	}
 	
- 
-	return editMode ? <input value={props.title}/> : <span onDoubleClick={editHandler}>{props.title}</span>
+	const editOff = () => {
+	  setEditMode(false)
+	}
+	
+	const cb =(e: ChangeEvent<HTMLInputElement>) => {
+	  setTitle(e.currentTarget.value)
+	}
+	
+	return editMode ? <input value={title} onBlur={editOff} onChange={cb}/> :
+	  <span onDoubleClick={editOn}>{props.title}</span>
   }
-  
-  
-  
   
   
   return (
