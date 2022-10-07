@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {AddItemForm} from './AddItemForm/AddItemForm';
 
 type TodolistType = {
@@ -50,6 +50,25 @@ export const Todolist = (props: TodolistType) => {
 	props.addTask(title, props.id)
   }
   
+  type EditableSpanType = {
+	title: string
+  }
+  
+  const EditableSpan = (props: EditableSpanType) => {
+	const [editMode, setEditMode] = useState(false)
+ 
+	const editHandler = () => {
+	  setEditMode(true)
+	}
+	
+ 
+	return editMode ? <input value={props.title}/> : <span onDoubleClick={editHandler}>{props.title}</span>
+  }
+  
+  
+  
+  
+  
   return (
 	<div>
 	  <h3>{props.title}
@@ -63,7 +82,7 @@ export const Todolist = (props: TodolistType) => {
 			  <li key={task.id} className={task.isDone ? 'is-done' : ''}>
 				<input type="checkbox" checked={task.isDone}
 					   onChange={() => onClickHandler(task)}/>
-				<span>{task.title}</span>
+				<EditableSpan title={task.title}/>
 				<button onClick={() => taskRemover(task)}>x</button>
 			  </li>)
 		  })}
