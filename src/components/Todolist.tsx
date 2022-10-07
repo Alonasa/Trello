@@ -1,6 +1,6 @@
 import React from 'react';
 import {AddItemForm} from './AddItemForm/AddItemForm';
-import {EditableSpan} from './EditableSpan';
+import {EditableSpan} from './EditableSpan/EditableSpan';
 
 type TodolistType = {
   id: string
