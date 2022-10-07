@@ -56,12 +56,15 @@ function App() {
   }
   
   const editTask = (value: string, tlId: string, taskId: string) => {
-  	console.log('wanna change title to ' + value)
 	const task = tasks[tlId].find(t => t.id === taskId)
-    if(task) {
-      task.title = value
+	if (task) {
+	  task.title = value
 	}
 	setTasks({...tasks})
+  }
+  
+  const editTlTitle = (value: string, tlId: string) => {
+	setTodolists(todolists.map(t=> t.id === tlId ? {...t, title:value} : t))
   }
   
   const changeTaskStatus = (id: string, isDone: boolean, todolistId: string) => {
@@ -106,6 +109,7 @@ function App() {
 			filterTasks={tasksFiltrator}
 			addTask={addNewTask}
 			editTask={editTask}
+			editTlTitle={editTlTitle}
 			changeTaskStatus={changeTaskStatus}
 			filter={todolist.filter}
 			removeTodolist={removeTodolist}
