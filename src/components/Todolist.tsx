@@ -52,9 +52,10 @@ export const Todolist = (props: TodolistType) => {
 	props.addTask(title, props.id)
   }
   
+  
   return (
 	<div>
-	  <h3>{props.title}
+	  <h3><EditableSpan title={props.title} editTitle={()=>('hi')}/>
 		<button onClick={() => removeTodolist(props.id)}>x</button>
 	  </h3>
 	  <AddItemForm addItem={addTask}/>
@@ -69,7 +70,7 @@ export const Todolist = (props: TodolistType) => {
 				<input type="checkbox" checked={task.isDone}
 					   onChange={() => onClickHandler(task)}/>
 				<EditableSpan title={task.title}
-							  editTask={edTask}/>
+							  editTitle={edTask}/>
 				<button onClick={() => taskRemover(task)}>x</button>
 			  </li>)
 		  })}
