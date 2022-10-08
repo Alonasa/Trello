@@ -64,19 +64,19 @@ export const Todolist = (props: TodolistType) => {
 		<button onClick={() => removeTodolist(props.id)}>x</button>
 	  </h3>
 	  <AddItemForm addItem={addTask}/>
-	  <ul>
+	  <ul className={styles.todolist__inner}>
 		{props.tasks.map(
 		  task => {
 			const editTask = (title: string) => {
 			  props.editTask(title, props.id, task.id)
 			}
 			return (
-			  <li key={task.id} className={task.isDone ? 'is-done' : ''}>
+			  <li key={task.id} className={task.isDone ? `${styles.todolist__item} is-done` : styles.todolist__item}>
 				<input type="checkbox" checked={task.isDone}
 					   onChange={() => onClickHandler(task)}/>
 				<EditableSpan title={task.title}
 							  editTitle={editTask}/>
-				<button onClick={() => taskRemover(task)}>x</button>
+				<button className={styles.todolist__button} onClick={() => taskRemover(task)}>x</button>
 			  </li>)
 		  })}
 	  </ul>

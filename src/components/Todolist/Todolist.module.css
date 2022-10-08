@@ -1,7 +1,9 @@
 .todolist {
+    width: 260px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    word-break: break-all;
 }
 
 .todolist__header {
@@ -9,4 +11,18 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: baseline;
+}
+
+.todolist__inner {
+    padding: 0;
+    list-style: none;
+}
+
+.todolist__item {
+    width: 100%;
+    display: flex;
+}
+
+.todolist__button {
+    align-self: center;
 }
