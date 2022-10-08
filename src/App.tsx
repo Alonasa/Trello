@@ -4,7 +4,7 @@ import {
   TasksStatusType,
   Todolist,
   TodolistStateType
-} from './components/Todolist';
+} from './components/Todolist/Todolist';
 import {v1} from 'uuid';
 import {AddItemForm} from './components/AddItemForm/AddItemForm';
 

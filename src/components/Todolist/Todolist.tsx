@@ -1,6 +1,7 @@
 import React from 'react';
-import {AddItemForm} from './AddItemForm/AddItemForm';
-import {EditableSpan} from './EditableSpan/EditableSpan';
+import {AddItemForm} from '../AddItemForm/AddItemForm';
+import {EditableSpan} from '../EditableSpan/EditableSpan';
+import styles from '../Todolist/Todolist.module.css'
 
 type TodolistType = {
   id: string
@@ -58,8 +59,8 @@ export const Todolist = (props: TodolistType) => {
   }
   
   return (
-	<div>
-	  <h3><EditableSpan title={props.title} editTitle={editTlTitle}/>
+	<div className={styles.todolist}>
+	  <h3 className={styles.todolist__header}><EditableSpan title={props.title} editTitle={editTlTitle}/>
 		<button onClick={() => removeTodolist(props.id)}>x</button>
 	  </h3>
 	  <AddItemForm addItem={addTask}/>

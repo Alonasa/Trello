@@ -1,0 +1,12 @@
+.todolist {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.todolist__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+}
