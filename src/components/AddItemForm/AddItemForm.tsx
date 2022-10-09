@@ -1,5 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {UniversalButton} from '../UniversalButton/UniversalButton';
+import {IconButton} from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 type AddItemFormType = {
   addItem: (title: string) => void
@@ -33,7 +35,7 @@ export const AddItemForm = (props: AddItemFormType) => {
 	<div>
 	  <input value={title} onChange={getFieldValue}
 			 onKeyPress={onKeyPressHandler} className={error ? 'error' : ''}/>
-	  <UniversalButton callback={addTaskHandler}/>
+	  <IconButton style={{padding: '0'}} onClick={addTaskHandler}><AddIcon/></IconButton>
 	  {error && <div className={'error-message'}>{error}</div>}
 	</div>
   );

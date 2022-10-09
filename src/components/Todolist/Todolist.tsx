@@ -88,7 +88,7 @@ export const Todolist = (props: TodolistType) => {
 			  </li>)
 		  })}
 	  </ul>
-	  <div className={styles.todolist__buttonGroup}>
+	  <div className={styles.todolist__buttons}>
 		<button className={filterStyleHandler('All')}
 				onClick={() => tasksFiltrator('All', props.id)}>All
 		</button>

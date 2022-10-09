@@ -1,4 +1,5 @@
 import React from 'react';
+import {isMuiElement} from '@mui/material';
 
 type UniversalButtonType = {
   callback: ()=> void

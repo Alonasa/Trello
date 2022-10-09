@@ -1,10 +1,11 @@
 .todolist {
     min-height: 340px;
-    width: 255px;
+    width: 260px;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
     word-break: break-all;
+    position: relative;
 }
 
 .todolist__header {
@@ -14,11 +15,11 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    line-height: 1;
 }
 
 .todolist__inner {
     padding: 0;
+    margin-bottom: 40px;
     width: 100%;
     list-style: none;
     display: flex;
@@ -31,8 +32,10 @@
 .todolist__item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
-.todolist__buttonGroup {
-    align-self: flex-end;
+.todolist__buttons {
+    position: absolute;
+    bottom: 0;
 }
