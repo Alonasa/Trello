@@ -1,9 +1,10 @@
 .todolist {
-    width: 260px;
+    width: 255px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     word-break: break-all;
+    align-items: stretch;
 }
 
 .todolist__header {
@@ -19,10 +20,6 @@
 }
 
 .todolist__item {
-    width: 100%;
     display: flex;
-}
-
-.todolist__button {
-    align-self: center;
+    justify-content: space-between;
 }
