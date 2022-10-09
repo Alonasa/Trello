@@ -2,6 +2,8 @@ import React from 'react';
 import {AddItemForm} from '../AddItemForm/AddItemForm';
 import {EditableSpan} from '../EditableSpan/EditableSpan';
 import styles from '../Todolist/Todolist.module.css'
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 type TodolistType = {
   id: string
@@ -71,12 +73,16 @@ export const Todolist = (props: TodolistType) => {
 			  props.editTask(title, props.id, task.id)
 			}
 			return (
-			  <li key={task.id} className={task.isDone ? `${styles.todolist__item} is-done` : styles.todolist__item}>
+			  <li key={task.id}
+				  className={task.isDone ? `${styles.todolist__item} is-done` : styles.todolist__item}>
 				<input type="checkbox" checked={task.isDone}
 					   onChange={() => onClickHandler(task)}/>
 				<EditableSpan title={task.title}
 							  editTitle={editTask}/>
-				<button className={styles.todolist__button} onClick={() => taskRemover(task)}>x</button>
+				<IconButton className={styles.todolist__button}
+							onClick={() => taskRemover(task)}>
+				  <DeleteIcon/>
+				</IconButton>
 			  </li>)
 		  })}
 	  </ul>
