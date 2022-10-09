@@ -63,7 +63,9 @@ export const Todolist = (props: TodolistType) => {
   return (
 	<div className={styles.todolist}>
 	  <h3 className={styles.todolist__header}><EditableSpan title={props.title} editTitle={editTlTitle}/>
-		<button onClick={() => removeTodolist(props.id)}>x</button>
+		<IconButton onClick={() => removeTodolist(props.id)}>
+		  <DeleteIcon/>
+		</IconButton>
 	  </h3>
 	  <AddItemForm addItem={addTask}/>
 	  <ul className={styles.todolist__inner}>
