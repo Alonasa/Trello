@@ -4,6 +4,7 @@ import {EditableSpan} from '../EditableSpan/EditableSpan';
 import styles from '../Todolist/Todolist.module.css'
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import {Checkbox} from '@mui/material';
 
 type TodolistType = {
   id: string
@@ -63,7 +64,7 @@ export const Todolist = (props: TodolistType) => {
   return (
 	<div className={styles.todolist}>
 	  <h3 className={styles.todolist__header}><EditableSpan title={props.title} editTitle={editTlTitle}/>
-		<IconButton onClick={() => removeTodolist(props.id)}>
+		<IconButton color={'primary'} onClick={() => removeTodolist(props.id)}>
 		  <DeleteIcon/>
 		</IconButton>
 	  </h3>
@@ -77,13 +78,13 @@ export const Todolist = (props: TodolistType) => {
 			return (
 			  <li key={task.id}
 				  className={task.isDone ? `${styles.todolist__item} is-done` : styles.todolist__item}>
-				<input type="checkbox" checked={task.isDone}
-					   onChange={() => onClickHandler(task)}/>
+				<Checkbox color="primary" checked={task.isDone}
+						  onChange={() => onClickHandler(task)}/>
 				<EditableSpan title={task.title}
 							  editTitle={editTask}/>
 				<IconButton className={styles.todolist__button}
 							onClick={() => taskRemover(task)}>
-				  <DeleteIcon/>
+				  <DeleteIcon color={'primary'}/>
 				</IconButton>
 			  </li>)
 		  })}

@@ -7,6 +7,8 @@ import {
 } from './components/Todolist/Todolist';
 import {v1} from 'uuid';
 import {AddItemForm} from './components/AddItemForm/AddItemForm';
+import {ThemeProvider} from '@mui/material';
+import {Theme} from './components/Theme';
 
 type TodolistsType = {
   id: string
@@ -88,18 +90,19 @@ function App() {
   
   
   return (
-	<div className="App">
-	  <AddItemForm addItem={addTodolist}/>
-	  {todolists.map(todolist => {
+	<div className="App" >
+	  <ThemeProvider theme={Theme}>
+		<AddItemForm addItem={addTodolist}/>
+		{todolists.map(todolist => {
 		  let filteredTasks = tasks[todolist.id];
-		  
+		
 		  if (todolist.filter === 'Completed') {
 			filteredTasks = tasks[todolist.id].filter(t => t.isDone)
 		  }
 		  if (todolist.filter === 'Active') {
 			filteredTasks = tasks[todolist.id].filter(t => !t.isDone)
 		  }
-		  
+		
 		  return <Todolist
 			key={todolist.id}
 			id={todolist.id}
@@ -116,7 +119,8 @@ function App() {
 		  />
 		})
 		
-	  }
+		}
+	  </ThemeProvider>
 	</div>
   );
 }

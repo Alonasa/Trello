@@ -37,11 +37,10 @@ export const AddItemForm = (props: AddItemFormType) => {
 		id="outlined-required"
 		defaultValue="Enter task name"
 		size={'small'}
-		color={'primary'}
 		value={title} onChange={getFieldValue}
 		onKeyPress={onKeyPressHandler} className={error ? 'error' : ''}
 	  />
-	  <IconButton onClick={addTaskHandler} style={{padding: '0'}}><AddIcon/></IconButton>
+	  <IconButton color={'primary'} onClick={addTaskHandler} style={{padding: '0'}}><AddIcon/></IconButton>
 	  {error && <div className={'error-message'}>{error}</div>}
 	</div>
   );
