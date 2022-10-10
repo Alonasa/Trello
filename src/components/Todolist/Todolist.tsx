@@ -4,7 +4,7 @@ import {EditableSpan} from '../EditableSpan/EditableSpan';
 import styles from '../Todolist/Todolist.module.css'
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-import {Checkbox} from '@mui/material';
+import {Button, Checkbox} from '@mui/material';
 
 type TodolistType = {
   id: string
@@ -39,7 +39,7 @@ export const Todolist = (props: TodolistType) => {
   }
   
   const filterStyleHandler = (filter: string) => {
-	return props.filter === filter ? 'active-filter' : 'filter'
+	return props.filter === filter ? 'contained' : 'outlined'
   }
   
   const removeTodolist = (id: string) => {
@@ -90,15 +90,15 @@ export const Todolist = (props: TodolistType) => {
 		  })}
 	  </ul>
 	  <div className={styles.todolist__buttons}>
-		<button className={filterStyleHandler('All')}
+		<Button size={'small'} variant={filterStyleHandler('All')}
 				onClick={() => tasksFiltrator('All', props.id)}>All
-		</button>
-		<button className={filterStyleHandler('Active')}
+		</Button>
+		<Button size={'small'} variant={filterStyleHandler('Active')}
 				onClick={() => tasksFiltrator('Active', props.id)}>Active
-		</button>
-		<button className={filterStyleHandler('Completed')}
+		</Button>
+		<Button size={'small'} variant={filterStyleHandler('Completed')}
 				onClick={() => tasksFiltrator('Completed', props.id)}>Completed
-		</button>
+		</Button>
 	  </div>
 	</div>
   )
