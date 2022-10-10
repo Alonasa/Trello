@@ -34,7 +34,6 @@ export const AddItemForm = (props: AddItemFormType) => {
   return (
 	<div className={styles.addItem}>
 	  <Input
-		id="outlined-required"
 		defaultValue="Enter task name"
 		size={'small'}
 		value={title} onChange={getFieldValue}
