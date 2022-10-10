@@ -14,6 +14,7 @@
 .error-message {
   color: rebeccapurple;
   font-weight: bold;
+  word-break: normal;
 }
 
 .filter {

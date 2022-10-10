@@ -1,7 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
-import {UniversalButton} from '../UniversalButton/UniversalButton';
-import {IconButton} from '@mui/material';
+import {IconButton, Input, TextField} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import styles from '../AddItemForm/AddItemForm.module.css'
 
 type AddItemFormType = {
   addItem: (title: string) => void
@@ -32,10 +32,16 @@ export const AddItemForm = (props: AddItemFormType) => {
   }
   
   return (
-	<div>
-	  <input value={title} onChange={getFieldValue}
-			 onKeyPress={onKeyPressHandler} className={error ? 'error' : ''}/>
-	  <IconButton style={{padding: '0'}} onClick={addTaskHandler}><AddIcon/></IconButton>
+	<div className={styles.addItem}>
+	  <Input
+		id="outlined-required"
+		defaultValue="Enter task name"
+		size={'small'}
+		color={'primary'}
+		value={title} onChange={getFieldValue}
+		onKeyPress={onKeyPressHandler} className={error ? 'error' : ''}
+	  />
+	  <IconButton onClick={addTaskHandler} style={{padding: '0'}}><AddIcon/></IconButton>
 	  {error && <div className={'error-message'}>{error}</div>}
 	</div>
   );
