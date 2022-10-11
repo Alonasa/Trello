@@ -9,6 +9,7 @@ import {v1} from 'uuid';
 import {AddItemForm} from './components/AddItemForm/AddItemForm';
 import {ThemeProvider} from '@mui/material';
 import {Theme} from './components/Theme';
+import MenuAppBar from './components/MenuAppBar';
 
 type TodolistsType = {
   id: string
@@ -92,6 +93,7 @@ function App() {
   return (
 	<div className="App" >
 	  <ThemeProvider theme={Theme}>
+		<MenuAppBar/>
 		<AddItemForm addItem={addTodolist}/>
 		{todolists.map(todolist => {
 		  let filteredTasks = tasks[todolist.id];
