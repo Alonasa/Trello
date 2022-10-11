@@ -7,7 +7,7 @@ import {
 } from './components/Todolist/Todolist';
 import {v1} from 'uuid';
 import {AddItemForm} from './components/AddItemForm/AddItemForm';
-import {ThemeProvider} from '@mui/material';
+import {Grid, ThemeProvider} from '@mui/material';
 import {Theme} from './components/Theme';
 import MenuAppBar from './components/MenuAppBar';
 
@@ -94,34 +94,36 @@ function App() {
 	<div className="App" >
 	  <ThemeProvider theme={Theme}>
 		<MenuAppBar/>
-		<AddItemForm addItem={addTodolist}/>
-		{todolists.map(todolist => {
-		  let filteredTasks = tasks[todolist.id];
-		
-		  if (todolist.filter === 'Completed') {
-			filteredTasks = tasks[todolist.id].filter(t => t.isDone)
+		<Grid container style={{padding: '20px'}}>
+		  <AddItemForm addItem={addTodolist}/>
+		  {todolists.map(todolist => {
+			let filteredTasks = tasks[todolist.id];
+			
+			if (todolist.filter === 'Completed') {
+			  filteredTasks = tasks[todolist.id].filter(t => t.isDone)
+			}
+			if (todolist.filter === 'Active') {
+			  filteredTasks = tasks[todolist.id].filter(t => !t.isDone)
+			}
+			
+			return <Todolist
+			  key={todolist.id}
+			  id={todolist.id}
+			  title={todolist.title}
+			  tasks={filteredTasks}
+			  removeTask={removeTask}
+			  filterTasks={tasksFiltrator}
+			  addTask={addNewTask}
+			  editTask={editTask}
+			  editTlTitle={editTlTitle}
+			  changeTaskStatus={changeTaskStatus}
+			  filter={todolist.filter}
+			  removeTodolist={removeTodolist}
+			/>
+		  })
+			
 		  }
-		  if (todolist.filter === 'Active') {
-			filteredTasks = tasks[todolist.id].filter(t => !t.isDone)
-		  }
-		
-		  return <Todolist
-			key={todolist.id}
-			id={todolist.id}
-			title={todolist.title}
-			tasks={filteredTasks}
-			removeTask={removeTask}
-			filterTasks={tasksFiltrator}
-			addTask={addNewTask}
-			editTask={editTask}
-			editTlTitle={editTlTitle}
-			changeTaskStatus={changeTaskStatus}
-			filter={todolist.filter}
-			removeTodolist={removeTodolist}
-		  />
-		})
-		
-		}
+		</Grid>
 	  </ThemeProvider>
 	</div>
   );
