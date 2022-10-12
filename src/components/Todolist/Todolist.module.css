@@ -1,6 +1,7 @@
 .todolist {
     min-height: 340px;
     width: 260px;
+    padding-right: 30px;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
