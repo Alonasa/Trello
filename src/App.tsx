@@ -94,7 +94,7 @@ function App() {
 	<div className="App" >
 	  <ThemeProvider theme={Theme}>
 		<MenuAppBar/>
-		<Grid container style={{padding: '20px'}}>
+		<Grid container style={{padding: '20px 40px'}}>
 		  <AddItemForm addItem={addTodolist}/>
 		  {todolists.map(todolist => {
 			let filteredTasks = tasks[todolist.id];
