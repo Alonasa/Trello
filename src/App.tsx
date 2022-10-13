@@ -11,7 +11,7 @@ import {Grid, ThemeProvider} from '@mui/material';
 import {Theme} from './components/Theme';
 import MenuAppBar from './components/MenuAppBar';
 
-type TodolistsType = {
+export type TodolistsType = {
   id: string
   title: string
   filter: TasksStatusType
@@ -84,9 +84,9 @@ function App() {
   }
   
   const addTodolist = (title: string) => {
-	const newTl:TodolistsType = {id: v1(), title: title, filter: 'All'}
-  	setTodolists([newTl, ...todolists])
-	setTasks({...tasks, [newTl.id]:[]})
+    const newTodolistId:string = v1();
+  	setTodolists([{id: newTodolistId, title, filter: 'All'}, ...todolists])
+	setTasks({...tasks, [newTodolistId]:[]})
   }
   
   
