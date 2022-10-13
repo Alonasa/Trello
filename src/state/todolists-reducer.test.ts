@@ -61,3 +61,24 @@ test(`Todolist filter must have completed status`, () => {
   expect(finalState[0].filter).toBe('All')
   expect(finalState[1].filter).toBe(newFilter)
 })
+
+test('Title should have a title', ()=> {
+  let todolistID1 = v1();
+  let todolistID2 = v1();
+  
+  const newTitle:string = "My new Title"
+  
+  const initialState: Array<TodolistsType> = [
+	{id: todolistID1, title: 'What to learn', filter: 'All'},
+	{id: todolistID2, title: 'What to buy', filter: 'All'}
+  ]
+  
+  const finalState = todolistsReducer(initialState, {
+    type: 'TITLE-EDITOR',
+	value: newTitle,
+	tlId: todolistID1
+  })
+  
+  expect(finalState[1].title).toBe('What to buy')
+  expect(finalState[0].title).toBe(newTitle)
+})
