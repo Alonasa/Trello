@@ -1,6 +1,10 @@
 import {TodolistsType} from '../App';
 import {v1} from 'uuid';
-import {AddTodolistAC, todolistsReducer} from './todolists-reducer';
+import {
+  AddTodolistAC,
+  RemoveTodolistAC,
+  todolistsReducer
+} from './todolists-reducer';
 import {TasksStatusType} from '../components/Todolist/Todolist';
 
 
@@ -29,10 +33,7 @@ test('Todolist should be removed', ()=> {
 	{id: todolistID2, title: 'What to buy', filter: 'All'}
   ]
   
-  const finalState = todolistsReducer(initialState, {
-	type: 'REMOVE-TODOLIST',
-	id: todolistID1
-  })
+  const finalState = todolistsReducer(initialState, RemoveTodolistAC(todolistID1))
   
   expect(finalState.length).toBe(1)
   expect(finalState[0].id).toBe(todolistID2)
