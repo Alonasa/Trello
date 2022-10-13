@@ -17,7 +17,7 @@ export const todolistsReducer = (todolists: Array<TodolistsType>, action: Todoli
 	switch (action.type) {
 	  case 'ADD-TODOLIST':
 	    const newTodolistId:string = v1();
-		return [{id: newTodolistId, title:action.title, filter: 'All'}, ...todolists]
+		return [{id: newTodolistId, title: action.title, filter: 'All'}, ...todolists]
 	  case 'REMOVE-TODOLIST':
 	    return  todolists.filter(t => t.id !== action.id)
 	  default: return todolists
