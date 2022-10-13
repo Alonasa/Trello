@@ -2,7 +2,7 @@ import {TodolistsType} from '../App';
 import {v1} from 'uuid';
 import {
   AddTodolistAC,
-  RemoveTodolistAC,
+  RemoveTodolistAC, TasksFiltratorAC,
   todolistsReducer
 } from './todolists-reducer';
 import {TasksStatusType} from '../components/Todolist/Todolist';
@@ -50,11 +50,7 @@ test(`Todolist filter must have completed status`, () => {
 	{id: todolistID2, title: 'What to buy', filter: 'All'}
   ]
   
-  const finalState = todolistsReducer(initialState, {
-	type: 'TASKS-FILTRATOR',
-	status: newFilter,
-	todolistId: todolistID2
-  })
+  const finalState = todolistsReducer(initialState, TasksFiltratorAC(newFilter, todolistID2))
   
   expect(finalState[0].filter).toBe('All')
   expect(finalState[1].filter).toBe(newFilter)

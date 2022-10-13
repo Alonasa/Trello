@@ -60,3 +60,8 @@ export const RemoveTodolistAC = (id: string): RemoveTodolistAT => ({
   type: 'REMOVE-TODOLIST',
   id: id
 })
+export const TasksFiltratorAC = (status: TasksStatusType, todolistId: string): TasksFiltratorAT => ({
+  type: 'TASKS-FILTRATOR',
+  status: status,
+  todolistId: todolistId
+})
