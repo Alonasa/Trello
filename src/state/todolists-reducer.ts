@@ -1,4 +1,4 @@
-import { TodolistsType } from '../App';
+import {TodolistsType} from '../App';
 import {v1} from 'uuid';
 import {TasksStatusType} from '../components/Todolist/Todolist';
 
@@ -41,8 +41,17 @@ export const todolistsReducer = (todolists: Array<TodolistsType>, action: Todoli
 		} : t)
 	  
 	  case 'TITLE-EDITOR':
-	    return todolists.map(t=> t.id === action.tlId ? {...t, title: action.value} : t)
+		return todolists.map(t => t.id === action.tlId ? {
+		  ...t,
+		  title: action.value
+		} : t)
 	  
-	  default: return todolists
+	  default:
+		return todolists
 	}
 }
+
+export const AddTodolistAC = (title: string): AddTodolistAT => ({
+  type: 'ADD-TODOLIST',
+  title: title
+})

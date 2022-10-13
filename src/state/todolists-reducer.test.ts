@@ -1,6 +1,6 @@
 import {TodolistsType} from '../App';
 import {v1} from 'uuid';
-import {todolistsReducer} from './todolists-reducer';
+import {AddTodolistAC, todolistsReducer} from './todolists-reducer';
 import {TasksStatusType} from '../components/Todolist/Todolist';
 
 
@@ -14,10 +14,7 @@ test('todolist should be added', ()=>{
 	{id: todolistID2, title: 'What to buy', filter: 'All'}
   ]
   
-  const finalState = todolistsReducer(initialState, {
-	type: 'ADD-TODOLIST',
-	title: newTodolistTitle
-  })
+  const finalState = todolistsReducer(initialState, AddTodolistAC(newTodolistTitle))
   
   expect(finalState.length).toBe(3)
   expect(finalState[0].title).toBe(newTodolistTitle)
