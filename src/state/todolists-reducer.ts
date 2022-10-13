@@ -2,7 +2,7 @@ import {TodolistsType} from '../App';
 import {v1} from 'uuid';
 import {TasksStatusType} from '../components/Todolist/Todolist';
 
-export type TodolistsACType = AddTodolistAT | RemoveTodolistAT | TasksFiltratorAT | EditTitleAT
+export type TodolistsACType = AddTodolistAT | RemoveTodolistAT | TasksFiltratorAT | TitleEditorAT
 
 type AddTodolistAT = {
   type: "ADD-TODOLIST"
@@ -20,7 +20,7 @@ type TasksFiltratorAT = {
   todolistId: string
 }
 
-type EditTitleAT = {
+type TitleEditorAT = {
   type: "TITLE-EDITOR"
   value: string
   tlId: string
@@ -64,4 +64,9 @@ export const TasksFiltratorAC = (status: TasksStatusType, todolistId: string): T
   type: 'TASKS-FILTRATOR',
   status: status,
   todolistId: todolistId
+})
+export const TitleEditorAC = (value: string, tlId: string): TitleEditorAT => ({
+  type: 'TITLE-EDITOR',
+  value: value,
+  tlId: tlId,
 })

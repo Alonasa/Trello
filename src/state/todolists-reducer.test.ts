@@ -2,7 +2,7 @@ import {TodolistsType} from '../App';
 import {v1} from 'uuid';
 import {
   AddTodolistAC,
-  RemoveTodolistAC, TasksFiltratorAC,
+  RemoveTodolistAC, TasksFiltratorAC, TitleEditorAC,
   todolistsReducer
 } from './todolists-reducer';
 import {TasksStatusType} from '../components/Todolist/Todolist';
@@ -67,11 +67,7 @@ test('Title should have a title', ()=> {
 	{id: todolistID2, title: 'What to buy', filter: 'All'}
   ]
   
-  const finalState = todolistsReducer(initialState, {
-    type: 'TITLE-EDITOR',
-	value: newTitle,
-	tlId: todolistID1
-  })
+  const finalState = todolistsReducer(initialState, TitleEditorAC(newTitle, todolistID1))
   
   expect(finalState[1].title).toBe('What to buy')
   expect(finalState[0].title).toBe(newTitle)
