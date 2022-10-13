@@ -1,6 +1,7 @@
 import {TodolistsType} from '../App';
 import {v1} from 'uuid';
 import {todolistsReducer} from './todolists-reducer';
+import {TasksStatusType} from '../components/Todolist/Todolist';
 
 
 test('todolist should be added', ()=>{
@@ -40,9 +41,11 @@ test('Todolist should be removed', ()=> {
   expect(finalState[0].id).toBe(todolistID2)
 })
 
-test(`Todolist filter can't be empty`, () => {
+test(`Todolist filter must have completed status`, () => {
   let todolistID1 = v1();
   let todolistID2 = v1();
+  
+  const newFilter:TasksStatusType = "Completed"
   
   const initialState: Array<TodolistsType> = [
 	{id: todolistID1, title: 'What to learn', filter: 'All'},
@@ -51,10 +54,10 @@ test(`Todolist filter can't be empty`, () => {
   
   const finalState = todolistsReducer(initialState, {
 	type: 'TASKS-FILTRATOR',
-	status: initialState[0].filter,
-	todolistId: todolistID1
+	status: newFilter,
+	todolistId: todolistID2
   })
   
   expect(finalState[0].filter).toBe('All')
-  expect(finalState[0].id).toBe(todolistID1)
+  expect(finalState[1].filter).toBe(newFilter)
 })
