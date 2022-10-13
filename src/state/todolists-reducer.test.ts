@@ -15,4 +15,11 @@ test('todolist should be added', ()=>{
 	]
   
   const finalState = todolistsReducer(initialState, {type:'ADD-TODOLIST', title: newTodolistTitle})
+
+  expect(finalState.length).toBe(3)
+  expect(finalState[2].title).toBe(newTodolistTitle)
+})
+
+test('Todolist should be removed', ()=> {
+
 })
