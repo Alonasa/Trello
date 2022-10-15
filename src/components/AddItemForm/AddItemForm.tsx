@@ -34,7 +34,6 @@ export const AddItemForm = (props: AddItemFormType) => {
   return (
 	<div className={styles.add__item}>
 	  <Input
-		defaultValue="Enter task name"
 		size={'small'}
 		value={title} onChange={getFieldValue}
 		onKeyPress={onKeyPressHandler} className={error ? 'error' : ''}

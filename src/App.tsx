@@ -9,7 +9,7 @@ import {v1} from 'uuid';
 import {AddItemForm} from './components/AddItemForm/AddItemForm';
 import {Grid, ThemeProvider} from '@mui/material';
 import {Theme} from './components/Theme';
-import MenuAppBar from './components/MenuAppBar';
+import MenuAppBar from './components/MenuApp/MenuAppBar';
 
 export type TodolistsType = {
   id: string
