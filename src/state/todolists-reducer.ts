@@ -4,7 +4,7 @@ import {TasksStatusType} from '../components/Todolist/Todolist';
 
 export type TodolistsACType = AddTodolistAT | RemoveTodolistAT | TasksFiltratorAT | TitleEditorAT
 
-type AddTodolistAT = {
+export type AddTodolistAT = {
   type: "ADD-TODOLIST"
   title: string
 }
