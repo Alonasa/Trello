@@ -26,9 +26,10 @@ export type TaskType = {
   isDone: boolean
 }
 
-export type TodolistStateType = {
+export type TodolistTasksType = {
   [key: string]: Array<TaskType>
 }
+
 
 export type TasksStatusType = 'All' | 'Active' | 'Completed'
 

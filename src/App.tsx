@@ -3,7 +3,7 @@ import './App.css';
 import {
   TasksStatusType,
   Todolist,
-  TodolistStateType
+  TodolistTasksType
 } from './components/Todolist/Todolist';
 import {v1} from 'uuid';
 import {AddItemForm} from './components/AddItemForm/AddItemForm';
@@ -28,7 +28,7 @@ function App() {
 	]
   )
   
-  let [tasks, setTasks] = useState<TodolistStateType>({
+  let [tasks, setTasks] = useState<TodolistTasksType>({
 	[todolistID1]: [
 	  {id: v1(), title: 'HTML&CSS', isDone: true},
 	  {id: v1(), title: 'JS', isDone: true},
