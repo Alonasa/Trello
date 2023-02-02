@@ -17,8 +17,8 @@ test('Task should be added to specified Todolist', () => {
     ]
   }
   
-  const finalState = tasksReducer(initialState, AddTaskAC(newTaskTitle, '4'))
+  const finalState = tasksReducer(initialState, AddTaskAC(newTaskTitle, 'todolistId2'))
   
-  expect(finalState.length).toBe(4)
-  expect(finalState[0][0].title).toBe(newTaskTitle)
+  expect(finalState['todolistId2'].length).toBe(4)
+  expect(finalState['todolistId2'][0].title).toBe(newTaskTitle)
 })

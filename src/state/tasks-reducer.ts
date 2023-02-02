@@ -12,7 +12,8 @@ type AddTaskActionTypes = AddTaskACType
 export const tasksReducer = (tasks: TodolistTasksType, action: AddTaskActionTypes) => {
 	switch (action.type) {
 	  case 'ADD-TASK': {
-	    return tasks
+	    const newTask = {id: v1(), title: action.title, isDone: false}
+	    return {...tasks, [action.todolistId]: [newTask, ...tasks[action.todolistId]]}
 	  }
 	  default: return tasks
 	}
@@ -20,10 +21,10 @@ export const tasksReducer = (tasks: TodolistTasksType, action: AddTaskActionType
 
 
 
-export const AddTaskAC =(value: string, todolistId: string)=> {
+export const AddTaskAC =(title: string, todolistId: string)=> {
   return {
     type: 'ADD-TASK',
-	value,
+	title,
 	todolistId
   } as const
 }
