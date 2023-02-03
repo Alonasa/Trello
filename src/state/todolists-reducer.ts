@@ -9,7 +9,7 @@ export type AddTodolistAT = {
   title: string
 }
 
-type  RemoveTodolistAT = {
+export type  RemoveTodolistAT = {
   type: "REMOVE-TODOLIST"
   id: string
 }
