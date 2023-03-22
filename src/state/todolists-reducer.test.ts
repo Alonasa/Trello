@@ -8,15 +8,16 @@ import {
 import {TasksStatusType} from '../components/Todolist/Todolist';
 
 
+let todolistID1 = v1();
+let todolistID2 = v1();
+
+const initialState:Array<TodolistsType>=[
+  {id: todolistID1, title: 'What to learn', filter: 'All'},
+  {id: todolistID2, title: 'What to buy', filter: 'All'}
+]
+
 test('todolist should be added', ()=>{
-  let todolistID1 = v1();
-  let todolistID2 = v1();
   let newTodolistTitle = 'I am a new title'
-  
-  const initialState:Array<TodolistsType>=[
-	{id: todolistID1, title: 'What to learn', filter: 'All'},
-	{id: todolistID2, title: 'What to buy', filter: 'All'}
-  ]
   
   const finalState = todolistsReducer(initialState, AddTodolistAC(newTodolistTitle))
   
@@ -25,14 +26,6 @@ test('todolist should be added', ()=>{
 })
 
 test('Todolist should be removed', ()=> {
-  let todolistID1 = v1();
-  let todolistID2 = v1();
-  
-  const initialState:Array<TodolistsType>=[
-	{id: todolistID1, title: 'What to learn', filter: 'All'},
-	{id: todolistID2, title: 'What to buy', filter: 'All'}
-  ]
-  
   const finalState = todolistsReducer(initialState, RemoveTodolistAC(todolistID1))
   
   expect(finalState.length).toBe(1)
@@ -40,15 +33,7 @@ test('Todolist should be removed', ()=> {
 })
 
 test(`Todolist filter must have completed status`, () => {
-  let todolistID1 = v1();
-  let todolistID2 = v1();
-  
   const newFilter:TasksStatusType = "Completed"
-  
-  const initialState: Array<TodolistsType> = [
-	{id: todolistID1, title: 'What to learn', filter: 'All'},
-	{id: todolistID2, title: 'What to buy', filter: 'All'}
-  ]
   
   const finalState = todolistsReducer(initialState, TasksFiltratorAC(newFilter, todolistID2))
   
@@ -57,15 +42,7 @@ test(`Todolist filter must have completed status`, () => {
 })
 
 test('Title should have a title', ()=> {
-  let todolistID1 = v1();
-  let todolistID2 = v1();
-  
   const newTitle:string = "My new Title"
-  
-  const initialState: Array<TodolistsType> = [
-	{id: todolistID1, title: 'What to learn', filter: 'All'},
-	{id: todolistID2, title: 'What to buy', filter: 'All'}
-  ]
   
   const finalState = todolistsReducer(initialState, TitleEditorAC(newTitle, todolistID1))
   

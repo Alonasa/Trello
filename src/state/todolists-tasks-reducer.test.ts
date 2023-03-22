@@ -1,9 +1,6 @@
 import {tasksReducer} from './tasks-reducer';
 import {AddTodolistAC, RemoveTodolistAC} from './todolists-reducer';
-import {
-  TasksStatusType,
-  TodolistTasksType
-} from '../components/Todolist/Todolist';
+import {TodolistTasksType} from '../components/Todolist/Todolist';
 
 test('new array should be added when new todolist is added', () => {
   const startState: TodolistTasksType = {
