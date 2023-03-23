@@ -31,8 +31,7 @@ export const tasksReducer = (tasks: TodolistTasksType, action: AddTaskActionType
 	}
  
 	case 'ADD-TODOLIST': {
-	  	let newId = v1();
-		return  {...tasks, [newId]: []}
+		return  {...tasks, [action.id]: []}
 	}
  
 	case 'REMOVE-TODOLIST': {
