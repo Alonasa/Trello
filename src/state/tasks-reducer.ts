@@ -27,7 +27,7 @@ export const tasksReducer = (tasks: TodolistTasksType, action: AddTaskActionType
 	}
  
 	case 'CHANGE-TASK-STATUS': {
-	  return {...tasks, [action.todolistId]: tasks[action.todolistId].map(t=> t.id===action.taskId? {...t, isDone: action.isDone}:t)}
+	  return {...tasks, [action.todolistId]: tasks[action.todolistId].map(t=> t.id===action.taskId? {...t, isDone: !action.isDone}:t)}
 	}
  
 	case 'ADD-TODOLIST': {
