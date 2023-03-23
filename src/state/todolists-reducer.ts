@@ -27,28 +27,30 @@ type TitleEditorAT = {
   tlId: string
 }
 
-export const todolistsReducer = (todolists: Array<TodolistsType>, action: TodolistsACType): Array<TodolistsType>=>{
+const initialState:TodolistsType[] = [];
+
+export const todolistsReducer = (state= initialState, action: TodolistsACType): Array<TodolistsType>=>{
 	switch (action.type) {
 	  case 'ADD-TODOLIST':
-		return [{id: action.id, title: action.title, filter: 'All'}, ...todolists]
+		return [{id: action.id, title: action.title, filter: 'All'}, ...state]
 	  
 	  case 'REMOVE-TODOLIST':
-	    return  todolists.filter(t => t.id !== action.id)
+	    return  state.filter(t => t.id !== action.id)
 	  
 	  case 'TASKS-FILTRATOR':
-	    return todolists.map(t => t.id === action.todolistId ? {
+	    return state.map(t => t.id === action.todolistId ? {
 		  ...t,
 		  filter: action.status
 		} : t)
 	  
 	  case 'TITLE-EDITOR':
-		return todolists.map(t => t.id === action.tlId ? {
+		return state.map(t => t.id === action.tlId ? {
 		  ...t,
 		  title: action.value
 		} : t)
 	  
 	  default:
-		return todolists
+		return state
 	}
 }
 
