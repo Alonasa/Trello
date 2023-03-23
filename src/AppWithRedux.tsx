@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react';
+import React from 'react';
 import './App.css';
 import {
   TasksStatusType,
@@ -20,8 +20,7 @@ import {
   AddTaskAC,
   ChangeTaskStatusAC,
   ChangeTaskTitleAC,
-  RemoveTaskAC,
-  tasksReducer
+  RemoveTaskAC
 } from './state/tasks-reducer';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from './state/store';
@@ -33,9 +32,6 @@ export type TodolistsType = {
 }
 
 function AppWithRedux() {
-  let todolistID1 = v1();
-  let todolistID2 = v1();
-  
   let todolists = useSelector<AppRootStateType, TodolistsType[]>(state => state.todolists)
   let tasks = useSelector<AppRootStateType, TodolistTasksType>(state => state.tasks)
   
